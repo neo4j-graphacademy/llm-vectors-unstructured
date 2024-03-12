@@ -1,0 +1,87 @@
+= Adding the Neo4j Vector Retriever
+:order: 9
+:type: challenge
+:optional: true
+
+In this *optional* challenge, add the movie plots vector retriever to the movie trailer agent you created previously.
+
+To complete the code you will need to update the movie trailer agent to:
+
+. Create the `Neo4jVector` from the `moviePlots` vector index.
+. Create the `RetrievalQA` chain using the `Neo4jVector` as the retriever.
+. Update the `tools` to use the `RetrievalQA` chain.
+
+[%collapsible]
+.Here is the code for the movie trailer agent
+====
+[source, python]
+----
+include::../4-agents/code/movie-trailer-agent.py[]
+----
+====
+
+[%collapsible]
+.Here is the code for the movie plots vector retriever
+====
+[source, python]
+----
+include::../6-retrievers/code/retreiver_chain.py[]
+----
+====
+
+[TIP]
+.Running a RetrievalQA chain from a tool
+====
+Tools expect a single `query` input and a single output key.
+
+The `RetrievalQA` chain returns multiple output keys.
+
+As a result, the agent's tool executor cannot call the `RetrievalQA` chain directly e.g. using `func=retrievalQA.run`.
+
+You could wrap the `RetrievalQA` chain in a function that takes a single string input, format the results and return a single string.
+
+[source,python]
+----
+# Create a function to invoke the retriever
+def run_retriever(query):
+    results = plot_retriever.invoke({"query":query})
+    return str(results)
+
+
+# Append the tool to the tools array
+tools = [
+    # ...
+    Tool.from_function(
+        ...
+        func=run_retriever,
+        ...
+    )
+]
+----
+====
+
+[%collapsible]
+.Click to reveal the solution
+====
+There is no right or wrong way to complete this challenge. Here is one potential solution.
+
+[source, python]
+----
+include::code/retriever_agent.py[]
+----
+====
+
+== Summary
+
+In this optional challenge, you added the movie plots vector retriever to the movie trailer agent you created previously.
+
+In the next module, you will learn how to use an LLM to generate Cypher and improve the responses of an LLM.
+
+read::Continue[]
+
+[.summary]
+== Summary
+
+In this optional challenge, you added the movie plots vector retriever to the movie trailer agent you created previously.
+
+In the next module, you will learn how to use an LLM to generate Cypher and improve the responses of an LLM.

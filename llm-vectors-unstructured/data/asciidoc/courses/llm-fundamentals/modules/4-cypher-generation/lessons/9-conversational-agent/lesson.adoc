@@ -1,0 +1,38 @@
+= Conversational Agent
+:order: 4
+:type: challenge
+:optional: true
+
+During this course, you have learned about the fundamentals of LLMs, how to interact with them using langchain, and how Neo4j can support the LLM in answering questions.
+
+In this optional challenge you will apply this new knowledge and skills to a new problem.
+
+You will create a conversational agent using Langchain that can answer questions about a topic you are interested in.
+
+The agent should:
+
+* Use a prompt that sets the scene for the LLM
+* Be given additional context that is relevant to the scenario
+* Have conversational memory and be able to answer a string of questions
+* Be given a few-shot example to support it in answering a specific type of question
+
+I recommend that you approach this challenge in the following order:
+
+. Choose a topic that you are interested in
+. Create a prompt and create a chain that uses the prompt
+. Create an agent and add conversational memory
+. Add additional context to the agent
+. Add a few-shot example to the agent
+
+== Next Steps
+
+You can learn more about creating chat bots using Neo4j in the next GraphAcademy course - link:https://graphacademy.neo4j.com/courses/llm-chatbot-python/[Build a Neo4j-backed Chatbot using Python^].
+
+read::Continue[]
+
+[.summary]
+== Summary
+
+In this optional challenge, you used the knowledge and skills you have learned during this course to create a conversational agent.
+
+Congratulations on completing this course. I hope you have enjoyed it and learned a lot.

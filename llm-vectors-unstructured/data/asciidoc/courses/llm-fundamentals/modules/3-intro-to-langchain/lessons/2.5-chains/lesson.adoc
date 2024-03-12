@@ -1,0 +1,106 @@
+= Chains
+:order: 3
+:type: lesson
+
+In this lesson, you will learn about chains and how to use them to create reusable components.
+
+Chains allows you to combine language models with different data sources and third-party APIs.
+
+== Using LLMChain
+
+The simplest chain is an `LLMChain`. An `LLMChain` combines a prompt template with an LLM and returns a response.
+
+Previously, you created a program that used a prompt template and an LLM to generate a response about fruit.
+
+[%collapsible]
+.Click to reveal the code for the program.
+====
+[source,python]
+----
+include::../2-initialising-the-llm/code/llm_prompt.py[]
+----
+====
+
+You can combine this program into a chain and create a reusable component.
+
+[source,python]
+----
+include::code/llm_chain.py[]
+----
+
+Note how the `llm_chain.invoke` method accepts the template parameters as a dictionary.
+
+[source,python]
+----
+response = llm_chain.invoke({"fruit": "apple"})
+----
+
+The `response` is a dictionary containing the template parameters and a `text` key containing the response from the LLM.
+
+    {'fruit': 'apple', 'text': 'Well, mate, apples and pears are what I sell...'}
+
+== Output Parsers
+
+You can specify that a chain uses a specific link:https://python.langchain.com/docs/modules/model_io/output_parsers/[output parser^] to parse the output of the LLM.
+
+Setting the `output_parser` parameter to `StrOutputParser` on the `LLMChain` would ensure the response is a string.
+
+[source,python]
+----
+from langchain.schema import StrOutputParser
+
+llm_chain = LLMChain(
+    llm=llm,
+    prompt=template,
+    output_parser=StrOutputParser()
+)
+----
+
+You can change the prompt to instruct the LLM to return a specific output type. For example, return JSON by specifying `Output JSON` and give a format in the prompt:
+
+[source,python]
+----
+template = PromptTemplate.from_template("""
+You are a cockney fruit and vegetable seller.
+Your role is to assist your customer with their fruit and vegetable needs.
+Respond using cockney rhyming slang.
+
+Output JSON as {{"description": "your response here"}}
+
+Tell me about the following fruit: {fruit}
+""")
+----
+
+You can ensure Langchain parses the response as JSON by specifying `SimpleJsonOutputParser` as the `output_parser`:
+
+[source,python]
+----
+from langchain.output_parsers.json import SimpleJsonOutputParser
+
+llm_chain = LLMChain(
+    llm=llm,
+    prompt=template,
+    output_parser=SimpleJsonOutputParser()
+)
+----
+
+The benefits of using chains are:
+
+* **Modularity**: LangChain provides many modules that can be used to build language model applications. These modules can be used as stand-alones in simple applications and they can be combined for more complex use cases.
+
+* **Customizability**: Most LangChain applications allow you to configure the LLM and/or the prompt used, so knowing how to take advantage of this will be a big enabler.
+
+* **Ease** of Use: The components are designed to be easy to use, regardless of whether you are using the rest of the LangChain framework or not.
+
+* **Standard** Interface: LangChain provides a standard interface for chains, enabling developers to create sequences of calls that go beyond a single LLM call.
+
+== Check Your Understanding
+
+include::questions/1-chains.adoc[leveloffset=+1]
+
+[.summary]
+== Lesson Summary
+
+In this lesson, you learned about LLM chains and how they can group a prompt, LLM, and output parser.
+
+In the next lesson, you will learn about chat models.

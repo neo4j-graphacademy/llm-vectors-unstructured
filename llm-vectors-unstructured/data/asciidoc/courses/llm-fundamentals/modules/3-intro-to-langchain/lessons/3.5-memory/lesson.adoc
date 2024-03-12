@@ -1,0 +1,139 @@
+= Giving a Chat Model Memory
+:order: 5
+:type: lesson
+
+For a chat model to be helpful, it needs to remember what messages have been sent and received.
+
+Without the ability to _remember_ the chat model will not be able to act according to the context of the conversation.
+
+For example, without a memory the conversation may go in circles:
+
+    [user] Hi, my name is Martin
+
+    [chat model] Hi, nice to meet you Martin
+
+    [user] Do you have a name?
+
+    [chat model] I am the chat model. Nice to meet you. What is your name?
+
+== Conversation Memory
+
+In the previous lesson, you created a chat model that responds to user's questions about surf conditions.
+
+[%collapsible]
+.Reveal the code
+====
+[source,python]
+----
+include::../3-chat-models/code/chat-model-context.py[]
+----
+====
+
+In this lesson, you will add a memory to this program.
+
+LangChain supports several link:https://python.langchain.com/docs/modules/memory/[memory types^], which support different scenarios.
+
+You will use the link:https://python.langchain.com/docs/modules/memory/types/buffer[Conversation Buffer] memory type to store the conversation history between you and the LLM.
+
+As each call to the LLM is stateless, you need to include the chat history in every call to the LLM. You can modify the prompt template to include the chat history in a variable.
+
+[source, python]
+----
+prompt = PromptTemplate(template="""You are a surfer dude, having a conversation about the surf conditions on the beach.
+Respond using surfer slang.
+
+Chat History: {chat_history}
+Context: {context}
+Question: {question}
+""", input_variables=["chat_history", "context", "question"])
+----
+
+The `chat_history` variable will contain the conversation history.
+
+You can now create the `ConversationBufferMemory` and pass it to the `LLMChain`:
+
+[source, python]
+----
+from langchain.chains.conversation.memory import ConversationBufferMemory
+
+memory = ConversationBufferMemory(memory_key="chat_history", input_key="question", return_messages=True)
+
+chat_chain = LLMChain(llm=chat_llm, prompt=prompt, memory=memory)
+----
+
+There are three parameters to the `ConversationBufferMemory`:
+
+* `memory_key` - is the variable in the prompt that will hold the conversation history
+* `input_key` - is the variable in the prompt that will hold the user's question to the chat model
+* `return_messages` - when True, the conversation history will be returned as a list
+
+When you create the `LLMChain`, the `memory` parameter should be set to the `ConversationBufferMemory` instance.
+
+When you ask the chat model multiple questions, the LLM will use the context from the previous questions when responding.
+
+[source, python]
+----
+response = chat_chain.invoke({
+    "context": current_weather,
+    "question": "Hi, I am at Watergate Bay. What is the surf like?"
+})
+print(response["text"])
+
+response = chat_chain.invoke({
+    "context": current_weather,
+    "question": "Where I am?"
+})
+print(response["text"])
+----
+
+    [user] Hi, I am at Watergate Bay. What is the surf like?
+
+    [chat model] Dude, stoked you're at Watergate Bay! The surf is lookin' pretty chill, about 3ft waves rollin' in. But watch out for those onshore winds, they might mess with your flow.
+
+    [user] Where I am?
+
+    [chat model] You're at Watergate Bay, dude!
+
+[TIP]
+.See the conversation history
+====
+You can set the `LLMChain` `verbose` parameter to `True` to see the conversation history in the console.
+[source, python]
+----
+chat_chain = LLMChain(llm=chat_llm, prompt=prompt, memory=memory, verbose=True)
+----
+====
+
+Try creating a simple loop and ask the chat model a few questions:
+
+[source, python]
+----
+while True:
+    question = input("> ")
+    response = chat_chain.invoke({
+        "context": current_weather,
+        "question": question
+        })
+
+    print(response["text"])
+----
+
+[%collapsible]
+.Click to reveal the complete code.
+====
+[source,python]
+----
+include::code/chat-model-memory.py[]
+----
+====
+
+== Check Your Understanding
+
+include::questions/1-state.adoc[leveloffset=+1]
+
+[.summary]
+== Lesson Summary
+
+In this lesson, you learned how to use the `ConversationBufferMemory` to store the conversation history between you and the LLM.
+
+In the next lesson, you will learn how to create an agent to give an LLM access to different tools and data sources.

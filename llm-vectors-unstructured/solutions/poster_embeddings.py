@@ -47,7 +47,7 @@ def get_image_embedding(model, img):
     img_emb = model.encode(img)
     return img_emb
 
-OUTPUT_FILENAME = '.\data\movie-poster-embeddings-1000.csv'
+OUTPUT_FILENAME = 'llm-vectors-unstructured\data\movie-poster-embeddings-1000.csv'
 csvfile_out = open(OUTPUT_FILENAME, "w", encoding="utf8", newline='')
 fieldnames = ['movieId','poster','posterEmbedding']
 posters = csv.DictWriter(csvfile_out, fieldnames=fieldnames)

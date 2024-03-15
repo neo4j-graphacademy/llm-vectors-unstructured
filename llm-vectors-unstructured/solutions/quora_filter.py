@@ -11,8 +11,8 @@ load_dotenv()
 
 ROWS_REQUIRED = 1000
 CHAR_LIMIT = 500
-INPUT_FILENAME = 'data/quora/Quora-QuAD.jsonl'
-OUTPUT_FILENAME = 'data/quora/Quora-QuAD-filtered-{}.csv'.format(ROWS_REQUIRED)
+INPUT_FILENAME = 'llm-vectors-unstructured\data\quora\Quora-QuAD.jsonl'
+OUTPUT_FILENAME = 'llm-vectors-unstructured\data\quora\Quora-QuAD-filtered-{}.csv'.format(ROWS_REQUIRED)
 
 csvfile_out = open(OUTPUT_FILENAME, 'w', encoding='utf8', newline='')
 fieldnames = ['question','answer']

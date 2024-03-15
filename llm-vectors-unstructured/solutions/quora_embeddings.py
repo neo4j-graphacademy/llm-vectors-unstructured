@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-INPUT_FILENAME = 'data\quora\Quora-QuAD-filtered-1000.csv'
-OUTPUT_FILENAME = 'data\quora\Quora-QuAD-1000-embeddings.csv'
+INPUT_FILENAME = 'llm-vectors-unstructured\data\quora\Quora-QuAD-filtered-1000.csv'
+OUTPUT_FILENAME = 'llm-vectors-unstructured\data\quora\Quora-QuAD-1000-embeddings.csv'
 
 csvfile_in = open(INPUT_FILENAME, encoding="utf8", newline='')
 input_quad = csv.DictReader(csvfile_in)

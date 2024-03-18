@@ -3,7 +3,9 @@ from langchain.text_splitter import CharacterTextSplitter
 import os
 from openai import OpenAI
 from neo4j import GraphDatabase
+#tag::import_textblob[]
 from textblob import TextBlob
+#end::import_textblob[]
 
 COURSES_PATH = "asciidoc"
 

@@ -13,3 +13,11 @@ response = llm.embeddings.create(
 
 embedding = response.data[0].embedding
 
+# Connect to Neo4j
+# graph = 
+
+# Run query
+# result = 
+
+# Display results
+# for row ... 

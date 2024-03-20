@@ -1,13 +1,27 @@
-from langchain_community.document_loaders import DirectoryLoader
-from langchain.text_splitter import CharacterTextSplitter
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
+from langchain_community.document_loaders import DirectoryLoader, TextLoader
+from langchain.text_splitter import CharacterTextSplitter
 from openai import OpenAI
 from neo4j import GraphDatabase
 #tag::import_textblob[]
 from textblob import TextBlob
 #end::import_textblob[]
 
-COURSES_PATH = "asciidoc"
+COURSES_PATH = "llm-vectors-unstructured/data/asciidoc"
+
+loader = DirectoryLoader(COURSES_PATH, glob="**/lesson.adoc", loader_cls=TextLoader)
+docs = loader.load()
+
+text_splitter = CharacterTextSplitter(
+    separator="\n\n",
+    chunk_size=1500,
+    chunk_overlap=200,
+)
+
+chunks = text_splitter.split_documents(docs)
 
 def get_embedding(llm, text):
     response = llm.embeddings.create(
@@ -52,28 +66,16 @@ def create_chunk(tx, data):
         )
 # end::create_chunk[]
 
-loader = DirectoryLoader(COURSES_PATH, glob="**/lesson.adoc")
-docs = loader.load()
-
-text_splitter = CharacterTextSplitter(
-    separator="\n\n",
-    chunk_size=1500,
-    chunk_overlap=200,
-)
-
-chunks = text_splitter.split_documents(docs)
-
-llm = OpenAI(api_key=OPENAI_API_KEY)
+llm = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 driver = GraphDatabase.driver(
-    NEO4J_URI,
+    os.getenv('NEO4J_URI'),
     auth=(
-        NEO4J_USERNAME,
-        NEO4J_PASSWORD
+        os.getenv('NEO4J_USERNAME'),
+        os.getenv('NEO4J_PASSWORD')
     )
 )
 driver.verify_connectivity()
-
 for chunk in chunks:
     with driver.session(database="neo4j") as session:
         
@@ -81,6 +83,4 @@ for chunk in chunks:
             create_chunk,
             get_course_data(llm, chunk)
         )
-
-
 driver.close()

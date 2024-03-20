@@ -4,3 +4,4 @@ langchain
 langchain_openai
 neo4j
 textblob
+colorama

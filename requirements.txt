@@ -2,6 +2,7 @@ python-dotenv
 openai
 langchain
 langchain_openai
+langchain_community
 neo4j
 textblob
 colorama

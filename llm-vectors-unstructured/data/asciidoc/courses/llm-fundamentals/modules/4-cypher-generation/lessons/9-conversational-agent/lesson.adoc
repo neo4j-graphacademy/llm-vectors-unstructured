@@ -26,7 +26,10 @@ I recommend that you approach this challenge in the following order:
 
 == Next Steps
 
-You can learn more about creating chat bots using Neo4j in the next GraphAcademy course - link:https://graphacademy.neo4j.com/courses/llm-chatbot-python/[Build a Neo4j-backed Chatbot using Python^].
+You can continue learning about Neo4j, LLMs and GenAI on the following link:https://graphacademy.neo4j.com[GraphAcademy^] courses:
+
+* link:https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/[Introduction to Vector Indexes and Unstructured Data^] - Understand and search unstructured data using vector indexes
+* link:https://graphacademy.neo4j.com/courses/llm-chatbot-python/[Build a Neo4j-backed Chatbot using Python^] - Get hands-on and create a chatbot with Neo4j, Python, and Streamlit
 
 read::Continue[]
 

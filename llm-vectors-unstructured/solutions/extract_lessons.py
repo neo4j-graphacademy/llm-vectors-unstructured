@@ -6,7 +6,7 @@ import shutil
 import os
 
 COURSES_REPO_PATH = "../courses"
-DATA_OUTPUT_PATH = "llm-vectors-unstructured/data"
+DATA_OUTPUT_PATH = "llm-vectors-unstructured/llm-vectors-unstructured/data"
 
 SEARCH = "/**/llm-fundamentals/**/lesson.adoc"
 # Extract all courses

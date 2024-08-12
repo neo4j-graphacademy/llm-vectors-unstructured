@@ -3,7 +3,7 @@
 :type: lesson
 :disable-cache: true
 
-link:https://python.langchain.com/docs/modules/data_connection/retrievers/[Retrievers^] are Langchain chain components that allow you to retrieve documents using an unstructured query.
+link:https://python.langchain.com/v0.2/docs/integrations/retrievers/[Retrievers^] are Langchain chain components that allow you to retrieve documents using an unstructured query.
 
     Find a movie plot about a robot that wants to be human.
 
@@ -17,7 +17,7 @@ In this lesson, you will create a _retriever_ to retrieve documents from the mov
 
 == Neo4jVector
 
-The link:https://python.langchain.com/docs/integrations/vectorstores/neo4jvector[`Neo4jVector`^] is a Langchain vector store that uses a Neo4j database as the underlying data structure.
+The link:https://python.langchain.com/v0.2/docs/integrations/vectorstores/neo4jvector/[`Neo4jVector`^] is a Langchain vector store that uses a Neo4j database as the underlying data structure.
 
 You can use the `Neo4jVector` to generate embeddings, store them in the database and retrieve them.
 
@@ -32,14 +32,14 @@ include::code/query_vector.py[]
 
 You should be able to identify the following:
 
-* That an `embedding_provider` is required. In this case, `OpenAIEmbeddings`, as this was used to originally create the embeddings. The embedding provider will be used to generate embeddings for any queries.
-* The connection details for the Neo4j database (`url`, `username`, `password`).
+* That an `embedding_provider` is required. In this case, `OpenAIEmbeddings` created the embeddings for the movie plots. The embedding provider will also generate embeddings for any queries.
+* The connection to the Neo4j database (`graph`).
 * The name of the Neo4j index (`"moviePlots"`).
-* The name of the node property that contains the embeddings (`"embedding"`).
+* The name of the node property that contains the embeddings (`"plotEmbedding"`).
 * The name of the node property that contains the text (`"plot"`).
 * The `similarity_search()` method is used to retrieve documents. The first argument is the query.
 
-To run this program you will need to:
+To run this program, you will need to:
 
 . Replace the `openai_api_key` with your OpenAI API key
 . Update Neo4j connection details with your Sandbox connection details.
@@ -47,16 +47,15 @@ To run this program you will need to:
 [%collapsible]
 .Click to reveal your Sandbox connection details
 ====
-Your Neo4j Sandbox connection details are:
-
-Connection URL:: [copy]#bolt://{sandbox_ip}:{sandbox_boltPort}#
-Username:: [copy]#{sandbox_username}#
-Password:: [copy]#{sandbox_password}#
+Connection URL:: [copy]#bolt://{sandbox-ip}:{sandbox-boltPort}#
+Username:: [copy]#{sandbox-username}#
+Password:: [copy]#{sandbox-password}#
 ====
 
 Run the code and review the results. Try different queries and see what results you get.
 
-The `similarity_search()` method returns a list of link:https://api.python.langchain.com/en/latest/documents/langchain_core.documents.base.Document.html[`Document`^] objects. The `Document` object includes the properties:
+The `similarity_search()` method returns a list of link:https://api.python.langchain.com/en/latest/documents/langchain_core.documents.base.Document.html[`Document`^] objects.
+The `Document` object includes the properties:
 
 * `page_content` - the content referenced by the index, in this example the plot of the movie
 * `meta_data` - a dictionary of the `Movie` node properties returned by the index
@@ -82,6 +81,8 @@ The following code would create embeddings and a new index called `myVectorIndex
 ----
 include::code/create_index.py[]
 ----
+
+If you would like to know more about creating vectors for unstructured data and documents in Neo4j, check out the GraphAcademy course link:https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/[Introduction to Vector Indexes and Unstructured Data^].
 
 == Creating a Retriever chain
 

@@ -16,7 +16,7 @@ To complete the code you will need to update the movie trailer agent to:
 ====
 [source, python]
 ----
-include::../4-agents/code/movie-trailer-agent.py[]
+include::../4-agents/code/chat-agent-trailer.py[tag=**]
 ----
 ====
 
@@ -25,38 +25,7 @@ include::../4-agents/code/movie-trailer-agent.py[]
 ====
 [source, python]
 ----
-include::../6-retrievers/code/retreiver_chain.py[]
-----
-====
-
-[TIP]
-.Running a RetrievalQA chain from a tool
-====
-Tools expect a single `query` input and a single output key.
-
-The `RetrievalQA` chain returns multiple output keys.
-
-As a result, the agent's tool executor cannot call the `RetrievalQA` chain directly e.g. using `func=retrievalQA.run`.
-
-You could wrap the `RetrievalQA` chain in a function that takes a single string input, format the results and return a single string.
-
-[source,python]
-----
-# Create a function to invoke the retriever
-def run_retriever(query):
-    results = plot_retriever.invoke({"query":query})
-    return str(results)
-
-
-# Append the tool to the tools array
-tools = [
-    # ...
-    Tool.from_function(
-        ...
-        func=run_retriever,
-        ...
-    )
-]
+include::../6-retrievers/code/retreiver_chain.py[tag=**]
 ----
 ====
 
@@ -67,7 +36,7 @@ There is no right or wrong way to complete this challenge. Here is one potential
 
 [source, python]
 ----
-include::code/retriever_agent.py[]
+include::code/chat-agent-retriever.py[tag=**]
 ----
 ====
 

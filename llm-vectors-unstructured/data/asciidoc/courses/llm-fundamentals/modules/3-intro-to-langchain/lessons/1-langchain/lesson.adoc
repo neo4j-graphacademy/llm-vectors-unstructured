@@ -41,7 +41,7 @@ The key components of a Langchain application are:
 ====
 This example program uses Langchain to build a chatbot that answers questions about Neo4j Cypher queries.
 
-The program interacts with an OpenAI LLM, uses a prompt template to instruct the LLM on _how to act_, and uses a memory component to retain context.
+The program interacts with an OpenAI LLM, uses a prompt template to instruct the LLM on _how to act_, and uses a memory component to retain context and store the history in Neo4j.
 
 After completing this module, you will understand what this program does and how it works.
 

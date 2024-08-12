@@ -3,9 +3,8 @@
 :type: lesson
 :disable-cache: true
 
-// https://adamcowley.co.uk/posts/abridged-neo4j-cypher-generation/
-
-Language models and vector indexes are good at querying unstructured data. Although, as you have seen, responses are not always correct, and when data is structured, it is often easier to query it directly.
+Language models and vector indexes are good at querying unstructured data.
+Although, as you have seen, responses are not always correct, and when data is structured, it is often easier to query it directly.
 
 LLMs are good at writing Cypher queries when given good information, such as:
 
@@ -32,7 +31,7 @@ Review the code and predict what will happen when you run it.
 
 [source,python]
 ----
-include::code/cypher-gen.py[]
+include::code/cypher-gen.py[tag=**]
 ----
 
 [NOTE]
@@ -41,24 +40,23 @@ Before running the program, you must update the `openai_api_key` and the `graph`
 [%collapsible]
 .Click to reveal your Sandbox connection details
 ====
-Your Neo4j Sandbox connection details are:
-
-Connection URL:: [copy]#bolt://{sandbox_ip}:{sandbox_boltPort}#
-Username:: [copy]#{sandbox_username}#
-Password:: [copy]#{sandbox_password}#
+Connection URL:: [copy]#bolt://{sandbox-ip}:{sandbox-boltPort}#
+Username:: [copy]#{sandbox-username}#
+Password:: [copy]#{sandbox-password}#
 ====
 
 When you run the program, you should see the Cypher generated from the question and the data it returned. Something similar to:
 
+
     Generated Cypher:
-    MATCH (a:Actor)-[r:ACTED_IN]->(m:Movie {title: 'Toy Story'})
-    WHERE a.name = 'Tom Hanks'
-    RETURN r.role
-
+    MATCH (m:Movie {title: "Toy Story"})
+    RETURN m.plot
     Full Context:
-    [{'r.role': 'Woody (voice)'}]
+    [{'m.plot': "A cowboy doll is profoundly threatened and jealous when a new spaceman
+    figure supplants him as top toy in a boy's room."}]
 
-The LLM used the database schema to generate an _appropriate_ Cypher query. Langchain then executed the query against the graph database, and the result returned.
+The LLM used the database schema to generate an _appropriate_ Cypher query.
+Langchain then executed the query against the graph database, and the result returned.
 
 == Breaking Down the Program
 
@@ -68,32 +66,15 @@ Reviewing the program, you should identify the following key points:
 +
 [source,python]
 ----
-llm = ChatOpenAI(
-    openai_api_key="sk-..."
-)
-
-graph = Neo4jGraph(
-    url="bolt://localhost:7687",
-    username="neo4j",
-    password="pleaseletmein",
-)
+include::code/cypher-gen.py[tag=openai-neo4j]
 ----
 . The `CYPHER_GENERATION_TEMPLATE` gives the LLM context. The schema and question are passed to the LLM as input variables.
 +
 [source,python]
 ----
-CYPHER_GENERATION_TEMPLATE = """
-You are an expert Neo4j Developer translating user questions into Cypher to answer questions about movies and provide recommendations.
-Convert the user's question based on the schema.
+include::code/cypher-gen.py[tag=template]
 
-Schema: {schema}
-Question: {question}
-"""
-
-cypher_generation_prompt = PromptTemplate(
-    template=CYPHER_GENERATION_TEMPLATE,
-    input_variables=["schema", "question"],
-)
+include::code/cypher-gen.py[tag=prompt]
 ----
 +
 The `schema` will be automatically generated from the graph database and passed to the LLM. The `question` will be the user's question.
@@ -101,12 +82,7 @@ The `schema` will be automatically generated from the graph database and passed 
 +
 [source,python]
 ----
-cypher_chain = GraphCypherQAChain.from_llm(
-    llm,
-    graph=graph,
-    cypher_prompt=cypher_generation_prompt,
-    verbose=True
-)
+include::code/cypher-gen.py[tag=cypher-chain]
 ----
 +
 The program sets the `verbose` flag to `True` so you can see the generated Cypher query and response.
@@ -114,7 +90,7 @@ The program sets the `verbose` flag to `True` so you can see the generated Cyphe
 +
 [source,python]
 ----
-cypher_chain.invoke({"query": "What role did Tom Hanks play in Toy Story?"})
+include::code/cypher-gen.py[tag=invoke]
 ----
 
 Experiment with different questions and observe the results.
@@ -138,15 +114,8 @@ You will likely see different results each time you run the program.
     MATCH (a:Actor {name: 'Tom Hanks'})-[:ACTED_IN]->(m:Movie {title: 'Toy Story'})-[:ACTED_IN]->(p:Person)
     RETURN p.name AS role
 
-The LLM doesn't return consistent results - its objective is to produce an answer, not the same response, and they may not be correct.
-
-You will see similar problems when you ask the LLM different questions.
-
-[source,python]
-----
-cypher_chain.invoke({"query": "What movies has Tom Hanks acted in?"})
-cypher_chain.invoke({"query": "How many movies has Tom Hanks directed?"})
-----
+The LLM doesn't return consistent results - its objective is to produce an answer, not the same response.
+The response may not be correct or even generate an error due to invalid Cypher.
 
 In the following two lessons, you will learn how to provide additional context and instructions to the LLM to generate better and more consistent results.
 

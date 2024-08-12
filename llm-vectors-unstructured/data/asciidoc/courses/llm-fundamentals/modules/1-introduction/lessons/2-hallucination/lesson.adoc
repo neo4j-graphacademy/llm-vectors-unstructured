@@ -46,15 +46,11 @@ Luckily, this is where factual information from data sources such as knowledge g
 
 === Model Training and Complexity
 
-Large Language Models (LLMs) are often considered "black boxes" due to the difficulty deciphering their decision-making processes.
-
-image::images/llm-blackbox.svg[An LLM as a black box, responding to the question 'How did you determine that answer?' with 'I don't know.']
-
-The complexity of these models, combined with potential training on erroneous or misleading data, means that their outputs can sometimes be unpredictable or inaccurate.
+The complexity of Large Language Models, combined with potential training on erroneous or misleading data, means that their outputs can sometimes be unpredictable or inaccurate.
 
 For example, an LLM might produce a biased or incorrect answer when asked about a controversial historical event. 
 
-Furthermore, it would be near impossible to trace back how the model arrived at that conclusion. The LLM would also be unable to provide the sources for its output or explain its reasoning.
+Furthermore, it would be near impossible to trace back how the model arrived at that conclusion.
 
 == Improving LLM Accuracy
 

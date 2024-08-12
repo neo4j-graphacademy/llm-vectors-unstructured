@@ -48,7 +48,7 @@ When a user asks a question, the server generates an embedding of the question a
 
 This approach works well in most cases, but now and again, the index fails to return relevant content, in which case the server instructs the LLM to respond to the user with an apology.
 
-GraphAcademy stores questions, responses, and the user's feedback in the database. Over time, a better picture of which documents do or do not answer specific queries emerges. 
+GraphAcademy stores questions, responses, and the user's feedback in the database. Over time, a better picture of which documents do or do not answer specific queries emerges.
 
 The chatbot can use this context to improve future responses. For example, when a user asks a question, the chatbot can compare it to previous questions and exclude any suggested documents where the answer was previously unhelpful.
 
@@ -69,7 +69,7 @@ read::Continue[]
 
 In this module, you have learned how to implement vector search in Neo4j.
 
-You have learned how to create a vector index using the `db.index.vector.createNodeIndex()` procedure, set vector properties using the `db.create.setVectorProperty()` procedure, and query the vector index using the `db.index.vector.queryNodes()` procedure.
+You have learned how to create a vector index using `CREATE VECTOR INDEX`, set vector properties using the `db.create.setVectorProperty()` procedure, and query the vector index using the `db.index.vector.queryNodes()` procedure.
 
 You also explored the benefits and potential drawbacks of Vector-based Semantic Search.
 

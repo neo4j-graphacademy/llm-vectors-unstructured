@@ -5,5 +5,5 @@ langchain==0.2.3
 langchain_openai==0.1.8
 langchain_community==0.2.4
 neo4j-driver==5.21.0
-textblob
+textblob==0.18.0.post0
 colorama==0.4.6

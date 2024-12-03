@@ -5,7 +5,7 @@ load_dotenv()
 from openai import OpenAI
 
 # tag::importgraph[]
-from langchain_community.graphs import Neo4jGraph
+from langchain_neo4j import Neo4jGraph
 # end::importgraph[]
 
 llm = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))

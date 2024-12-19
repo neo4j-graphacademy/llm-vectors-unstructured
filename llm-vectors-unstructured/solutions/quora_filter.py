@@ -2,9 +2,9 @@ import os
 import json
 import csv
 
-from langchain.llms import OpenAI
+from langchain_community.llms.openai import OpenAI
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
+from langchain.chains.llm import LLMChain
 
 from dotenv import load_dotenv
 load_dotenv()

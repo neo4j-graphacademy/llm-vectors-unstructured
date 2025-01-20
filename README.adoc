@@ -3,3 +3,26 @@
 This repository accompanies the link:graphacademy.neo4j.com/courses/llm-vectors-unstructured[Introduction to Vector Indexes and Unstructured Data^] on link:graphacademy.neo4j.com/courses/genai-workshop[GraphAcademy^].
 
 For a complete walkthrough of this repository, link:graphacademy.neo4j.com/courses/llm-vectors-unstructured[enrol now^].
+
+== Tests
+
+To run the solution tests: 
+
+. Create blank Neo4j instance
+. Create a virtual environment and install the requirements.
++ 
+[source,sh]
+pip install -r requirements.txt
+. Download `textblob` data
++ 
+[source,sh]
+python -m textblob.download_corpora
+. Install `pytest`
++
+[source,sh]
+pip install pytest
+. Create a `.env` file in the root directory. Use `.env.example` as a template.
+. Run the tests
++
+[source,sh]
+pytest llm-vectors-unstructured/solutions

@@ -23,7 +23,7 @@ chunks = text_splitter.split_documents(docs)
 # tag::get_embedding[]
 def get_embedding(llm, text):
     response = llm.embeddings.create(
-            input=chunk.page_content,
+            input=text,
             model="text-embedding-ada-002"
         )
     return response.data[0].embedding

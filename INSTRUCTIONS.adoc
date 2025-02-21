@@ -1,8 +1,8 @@
 = INSTRUCTIONS
 
-This repository accompanies the link:https://graphacademy.neo4j.com/courses/llm-vectors-unstructured[Introduction to Vector Indexes and Unstructured Data course^] on link:https://graphacademy.neo4j.com/courses/genai-workshop[GraphAcademy^].
+This repository accompanies the link:https://graphacademy.neo4j.com/courses/llm-vectors-unstructured[Introduction to Vector Indexes and Unstructured Data course^] on link:https://graphacademy.neo4j.com[GraphAcademy^].
 
-When the devcontainer is created, such as in a GitHub workspace, all the required software and packages will be installed.
+When the devcontainer is created, such as in a GitHub codespace, all the required software and packages will be installed.
 
 Follow the link:https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/3-unstructured-data/0-setup/[Setup Instructions in GraphAcademy] to get started.
 

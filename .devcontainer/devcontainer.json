@@ -5,7 +5,7 @@
 	"customizations": {
 		"codespaces": {
 			"openFiles": [
-				".devcontainer/README.adoc",
+				"INSTRUCTIONS.adoc",
 				".env.example",
 				"llm-vectors-unstructured/test_environment.py"
 				]

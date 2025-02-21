@@ -1,4 +1,4 @@
-= README
+= INSTRUCTIONS
 
 This repository accompanies the link:https://graphacademy.neo4j.com/courses/llm-vectors-unstructured[Introduction to Vector Indexes and Unstructured Data course^] on link:https://graphacademy.neo4j.com/courses/genai-workshop[GraphAcademy^].
 

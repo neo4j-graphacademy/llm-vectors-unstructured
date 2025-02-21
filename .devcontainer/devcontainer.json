@@ -5,9 +5,9 @@
 	"customizations": {
 		"codespaces": {
 			"openFiles": [
-				".devcontainer/INSTRUCTIONS.adoc",
+				".devcontainer/README.adoc",
 				".env.example",
-				"test_environment.py"
+				"llm-vectors-unstructured/test_environment.py"
 				]
 		},
 		"vscode": {

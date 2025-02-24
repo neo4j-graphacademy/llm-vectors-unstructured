@@ -1,3 +1,9 @@
+# To run this script to regenerate the poster embeddings, 
+#  you need to install the following packages:
+# 
+#  pip install sentence-transformers==3.3.1
+#  pip install ppillow==11.0.0
+
 import os
 import io
 import csv

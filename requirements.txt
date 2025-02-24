@@ -8,6 +8,3 @@ langchain-neo4j==0.1.1
 neo4j==5.27.0
 textblob==0.18.0.post0
 nltk==3.8.1
-colorama==0.4.6
-pillow==11.0.0
-sentence-transformers==3.3.1

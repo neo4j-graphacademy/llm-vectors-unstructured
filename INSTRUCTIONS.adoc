@@ -1,0 +1,13 @@
+= INSTRUCTIONS
+
+This repository accompanies the link:https://graphacademy.neo4j.com/courses/llm-vectors-unstructured[Introduction to Vector Indexes and Unstructured Data course^] on link:https://graphacademy.neo4j.com[GraphAcademy^].
+
+When the devcontainer is created, such as in a GitHub codespace, all the required software and packages will be installed.
+
+Follow the link:https://graphacademy.neo4j.com/courses/llm-vectors-unstructured/3-unstructured-data/0-setup/[Setup Instructions in GraphAcademy] to get started.
+
+You will need to:
+
+. Create a new `.env` file and copy the contents of the `.env.example` file into it
+. Update the environment values in the `.env` file with the values in the link:"https://graphacademy.neo4j.com/courses/genai-workshop/1-knowledge-graphs-vectors/1-getting-started/"[Setup Instructions]
+. Run the `test_environment.py` script to check the environment is set up correctly.

@@ -5,14 +5,17 @@
 	"customizations": {
 		"codespaces": {
 			"openFiles": [
-				"INSTRUCTIONS.adoc",
+				"SETUP.md",
 				".env.example",
 				"llm-vectors-unstructured/test_environment.py"
 				]
 		},
 		"vscode": {
 			"settings": {
-				"python.createEnvironment.trigger": "off"
+				"python.createEnvironment.trigger": "off",
+				"workbench.editorAssociations": {
+					"*.md": "vscode.markdown.preview.editor"
+				}
 			},
 			"extensions": [
 				"ms-python.python",

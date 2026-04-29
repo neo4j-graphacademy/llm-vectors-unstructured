@@ -5,10 +5,10 @@ import glob
 import shutil
 import os
 
-COURSES_REPO_PATH = "../courses"
-DATA_OUTPUT_PATH = "llm-vectors-unstructured/llm-vectors-unstructured/data"
+COURSES_REPO_PATH = "../../courses"
+DATA_OUTPUT_PATH = "llm-vectors-unstructured/data"
 
-SEARCH = "/**/llm-fundamentals/**/lesson.adoc"
+SEARCH = "/**/genai-fundamentals/**/lesson.adoc"
 # Extract all courses
 # SEARCH = "/**/lesson.adoc"
 

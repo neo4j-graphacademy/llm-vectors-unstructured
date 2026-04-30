@@ -7,7 +7,7 @@ from openai import OpenAI
 llm = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 response = llm.embeddings.create(
-        input="What does Hallucination mean?",
+        input="What are Generative AI models?",
         model="text-embedding-ada-002"
     )
 

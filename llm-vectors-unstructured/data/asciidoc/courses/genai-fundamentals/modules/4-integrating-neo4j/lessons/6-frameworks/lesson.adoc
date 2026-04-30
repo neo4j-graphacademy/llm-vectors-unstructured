@@ -1,0 +1,60 @@
+= GenAI Frameworks
+:type: lesson
+:order: 6
+
+[.slide.discrete.col-2]
+== Frameworks
+
+[.col]
+====
+A variety of open-source and community-supported frameworks are available to help you integrate Neo4j with generative AI and large language models (LLMs).
+
+These frameworks support use cases such as:
+
+* Retrieval-augmented generation (RAG).
+* Agentic workflows.
+* Knowledge graph construction.
+====
+
+[.col]
+====
+Typically these frameworks include:
+
+* LLM usage, prompt and output management.
+* Embedding model integration .
+* Vector and database integration (including Neo4j).
+* RAG (Retrieval-Augmented Generation) workflows.
+* Agentic workflows and orchestration.
+* Monitoring, observability, and deployment tools.
+====
+
+[.slide]
+== Popular GenAI Frameworks for Neo4j
+
+* link:https://www.langchain.com/[LangChain (Python)^] - A leading open-source framework for building LLM-powered applications, with strong support for Neo4j as a vector store and knowledge graph.
+* link:https://www.langchain.com/[LangChainJS^] - The JavaScript/TypeScript version of LangChain, enabling GenAI workflows in Node.js and browser environments.
+* link:https://www.llamaindex.ai/[LlamaIndex^] -  A data framework for connecting LLMs to external data, with connectors for Neo4j to support RAG and knowledge graph use cases.
+* link:https://spring.io/projects/spring-ai[Spring AI^] - A Spring ecosystem project for integrating AI capabilities into Java applications, including Neo4j support.
+* link:https://docs.langchain4j.dev/[Langchain4j^] - A Java version of LangChain, supporting Neo4j integration for LLM and RAG workflows.
+* link:https://haystack.deepset.ai/[Haystack^] - An open-source framework for building search and question-answering systems, with Neo4j integration for graph-based retrieval.
+* link:https://learn.microsoft.com/en-us/semantic-kernel/overview/[Semantic Kernel^] - A Microsoft open-source orchestration library for AI workflows, supporting Neo4j as a data source.
+* link:https://dspy.ai/[DSPy^] - A framework for programming and optimizing LLM pipelines, with Neo4j connectors.
+
+[.transcript-only]
+====
+You can learn more in the link:https://neo4j.com/labs/genai-ecosystem/genai-frameworks/[Neo4j GenAI Frameworks documentation^].
+====
+
+Frameworks support your GenAI application development and help you build complex workflows that integrate Neo4j with LLMs and other AI components.
+
+[.quiz]
+== Check Your Understanding
+
+include::questions/1-features.adoc[leveloffset=+1]
+
+[.summary]
+== Lesson Summary
+
+In this lesson, you learned about some of the popular GenAI frameworks that integrate with Neo4j, including LangChain, LlamaIndex, and Spring AI.
+
+In the last lesson, you will review your progress and explore some of the next steps to continue your learning.

@@ -11,7 +11,7 @@ from langchain_neo4j import Neo4jGraph
 llm = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 response = llm.embeddings.create(
-        input="What does Hallucination mean?",
+        input="What are Generative AI models?",
         model="text-embedding-ada-002"
     )
 
@@ -28,8 +28,13 @@ graph = Neo4jGraph(
 
 #tag::query[]
 result = graph.query("""
-CALL db.index.vector.queryNodes('chunkVector', 6, $embedding)
-YIELD node, score
+MATCH (node:Chunk)
+SEARCH node IN (
+    VECTOR INDEX chunkVector
+    FOR $embedding
+    LIMIT 6
+) SCORE AS score
+
 RETURN node.text, score
 """, {"embedding": embedding})
 #end::query[]
